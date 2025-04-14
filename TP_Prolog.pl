@@ -67,3 +67,20 @@ atraenInsectosBeneficos(Planta):- planta(Planta,color(rojo)).
 atraenInsectosBeneficos(Planta):- planta(Planta,color(amarillo)).
 consideradaAlta(Planta):-planta(Planta,_),
 not(planta(Planta,tipo(flor))).
+
+conjuntoTipoFlorYCortas(Plantas):-
+   
+    findall(Planta,
+    ((plantas(Planta,tipo(flor))),planta(Planta, altura(corta))),
+    Plantas).
+    
+/*
+Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
+pista(arbol_rojo, tipo(arbusto)).
+pista(arbol_rojo, altura(media)).
+Queremos relacionar una planta y un observador solo si todas las pistas que tiene el observador son características de la planta. 
+En este punto no se puede usar findall.
+*/
+
+tieneTodaslasCaracteristicas(Planta,Observador):-    
+    forall(pista(Observador,Caracteristica),planta(Planta,Caracteristica)).
