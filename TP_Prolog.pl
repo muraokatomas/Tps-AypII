@@ -48,7 +48,7 @@ plantas_companeras(rose, bamboo).
 
 
 /*
-Queremos poder preguntar sobre nuestras plantas si:
+1) Queremos poder preguntar sobre nuestras plantas si:
 a. Son de tipo arbusto.
 b. Florecen en primavera.
 c. Tienen un color específico.
@@ -57,7 +57,7 @@ sonDeTipoArbusto(Planta):-planta(Planta,tipo(arbusto)).
 florecenEnPrimavera(Planta):-planta(Planta,epoca(floracion,primavera)).
 tieneColorEspecifico(Planta,Color):-planta(Planta,color(Color)).
 /*
-Sabemos que: 
+2) Sabemos que: 
 a. Las plantas que son arbustos y florecen en verano deben tener un sistema de riego especial. 
 b. Las plantas rojas o amarillas atraen más insectos benéficos. 
 c. Las plantas que no son de tipo flor son consideradas altas.
@@ -68,6 +68,9 @@ atraenInsectosBeneficos(Planta):- planta(Planta,color(amarillo)).
 consideradaAlta(Planta):-planta(Planta,_),
 not(planta(Planta,tipo(flor))).
 
+/*
+3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
+*/
 conjuntoTipoFlorYCortas(Plantas):-
    
     findall(Planta,
@@ -75,7 +78,7 @@ conjuntoTipoFlorYCortas(Plantas):-
     Plantas).
     
 /*
-Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
+4) Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
 pista(arbol_rojo, tipo(arbusto)).
 pista(arbol_rojo, altura(media)).
 Queremos relacionar una planta y un observador solo si todas las pistas que tiene el observador son características de la planta. 
@@ -84,3 +87,18 @@ En este punto no se puede usar findall.
 
 tieneTodaslasCaracteristicas(Planta,Observador):-    
     forall(pista(Observador,Caracteristica),planta(Planta,Caracteristica)).
+
+/*
+5) Finalmente, queremos saber si una planta está atrayendo más visitas que su compañera. 
+Para ello, la cantidad de pistas que cumple debe ser mayor que la de las plantas compañeras.
+*/
+
+cantidadPistas(Planta, Cantidad) :-
+    findall(Caracteristica, (pista(_, Caracteristica), planta(Planta, Caracteristica)), ListaCaracteristica),
+    length(ListaCaracteristica, Cantidad).
+
+masVisitasCompanera(Planta) :-
+    plantas_companeras(Planta, Companera),
+    cantidadPistas(Planta, Cant1),
+    cantidadPistas(Companera, Cant2),
+    Cant1 > Cant2.
