@@ -54,7 +54,7 @@ b. Florecen en primavera.
 c. Tienen un color específico.
 */ 
 sonDeTipoArbusto(Planta):-planta(Planta,tipo(arbusto)).
-florecenEnPrimavera(Planta):-plata(Planta,epoca(floracion,primavera)).
+florecenEnPrimavera(Planta):-planta(Planta,epoca(floracion,primavera)).
 tieneColorEspecifico(Planta,Color):-planta(Planta,color(Color)).
 /*
 Sabemos que: 
