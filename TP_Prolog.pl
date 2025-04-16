@@ -74,7 +74,7 @@ not(planta(Planta,tipo(flor))).
 conjuntoTipoFlorYCortas(Plantas):-
    
     findall(Planta,
-    ((plantas(Planta,tipo(flor))),planta(Planta, altura(corta))),
+    ((planta(Planta,tipo(flor))),planta(Planta, altura(corta))),
     Plantas).
     
 /*
