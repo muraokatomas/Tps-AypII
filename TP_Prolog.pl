@@ -82,40 +82,6 @@ conjuntoTipoFlorYCortas(Plantas):-
     
 /*
 4) Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
-pista(arbol_rojo, tipo(arbusto)).
-pista(arbol_rojo, altura(media)).
-Queremos relacionar una planta y un observador solo si todas las pistas que tiene el observador son características de la planta. 
-En este punto no se puede usar findall.
-*/
-
-tieneTodaslasCaracteristicas(Planta,Observador):-    
-    forall(pista(Observador,Caracteristica),planta(Planta,Caracteristica)).
-
-/*
-5) Finalmente, queremos saber si una planta está atrayendo más visitas que su compañera. 
-Para ello, la cantidad de pistas que cumple debe ser mayor que la de las plantas compañeras.
-*/
-
-cantidadPistas(Planta, Cantidad) :-
-    findall(Caracteristica, (pista(_, Caracteristica), planta(Planta, Caracteristica)), ListaCaracteristica),
-    length(ListaCaracteristica, Cantidad).
-
-masVisitasCompanera(Planta) :-
-    plantas_companeras(Planta, Companera),
-    cantidadPistas(Planta, Cant1),
-    cantidadPistas(Companera, Cant2),
-    Cant1 > Cant2.
-
-
-/*
-3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
-*/
-conjuntoTipoFlorYCortas(Plantas):-
-findall(Planta,
-        ((planta(Planta,tipo(flor))),planta(Planta, altura(corta))),
-                Plantas).
-/*
-4) Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
 Queremos relacionar una planta y un observador solo si todas las pistas que tiene el observador son características de la planta. 
 En este punto no se puede usar findall.
 */
