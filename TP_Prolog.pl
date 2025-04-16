@@ -101,7 +101,12 @@ cantidadPistas(Planta, Cantidad) :-
     length(ListaCaracteristica, Cantidad).
 
 masVisitasCompanera(Planta) :-
-    plantas_companeras(Planta, Companera),
-    cantidadPistas(Planta, Cant1),
-    cantidadPistas(Companera, Cant2),
-    Cant1 > Cant2.
+    planta(Planta, _),
+    cantidadPistas(Planta, CantPlanta),
+    forall(
+        plantas_companeras(Planta, Companera),
+        (
+            cantidadPistas(Companera, CantCompanera),
+            CantPlanta > CantCompanera
+        )
+    ).
