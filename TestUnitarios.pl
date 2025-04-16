@@ -59,3 +59,16 @@ test('consideradaAlta - Inversible', set(Planta == [rose, cactus, fern, bamboo, 
     consideradaAlta(Planta).
 
 :- end_tests(ejercicio2).
+
+:-begin_tests(ejercicio3).
+
+test('lilyEsPlantaFlorYCorta'):-
+    conjuntoTipoFlorYCortas(Plantas), member(lily, Plantas).
+
+test('roseNoEsPlantaFlorYCorta', fail):-
+    conjuntoTipoFlorYCortas(Plantas), member(rose, Plantas).
+
+test('conjuntoTipoFloryCortas - Inversible', true(Plantas == [lily, tulip, orchid])):-
+    conjuntoTipoFlorYCortas(Plantas).
+
+:-end_tests(ejercicio3).
