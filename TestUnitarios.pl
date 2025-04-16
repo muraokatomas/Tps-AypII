@@ -34,3 +34,28 @@ test('tieneColorEspecifico - inversible por color', set(Color == [rojo, blanco, 
     tieneColorEspecifico(_, Color).
 
 :-end_tests(ejercicio1).
+
+:- begin_tests(ejercicio2).
+
+test('TieneRiegoEspecial', fail) :- 
+    riegoEspecial(_). 
+
+test('RoseAtraeInsectosBeneficos'):-
+    atraenInsectosBeneficos(rose).
+
+test('LilyNoAtraeInsectosBeneficos', fail):-
+    atraenInsectosBeneficos(lily).
+
+test('AtraenInsectosBeneficos', set(Planta == [rose, tulip, sunflower])):-
+    atraenInsectosBeneficos(Planta).
+
+test('cactusEsConsideradaAlta'):-
+    consideradaAlta(cactus).
+
+test('orchidNoEsConsideradaAlta', fail):-
+    consideradaAlta(orchid).
+
+test('consideradaAlta - Inversible', set(Planta == [rose, cactus, fern, bamboo, ivy])) :- 
+    consideradaAlta(Planta).
+
+:- end_tests(ejercicio2).
