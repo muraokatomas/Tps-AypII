@@ -72,3 +72,26 @@ test('conjuntoTipoFloryCortas - Inversible', true(Plantas == [lily, tulip, orchi
     conjuntoTipoFlorYCortas(Plantas).
 
 :-end_tests(ejercicio3).
+
+:- begin_tests(ejercicio4).
+
+test('arbol_rojoEsRose') :-
+    tieneTodaslasCaracteristicas(rose, arbol_rojo).
+
+test('arbol_rojoNoEsLily', fail) :-
+    tieneTodaslasCaracteristicas(lily, arbol_rojo).
+
+test('PlantasConTodasLasPistasDe_arbol_rojo', set(Planta == [rose])) :-
+    tieneTodaslasCaracteristicas(Planta, arbol_rojo).
+
+:- end_tests(ejercicio4).
+
+:- begin_tests(ejercicio5).
+
+test('RoseTieneMasVisitasQueBamboo') :-
+    masVisitasCompanera(rose).
+
+test('PlantasConMasVisitasQueSuCompanera', set(Planta == [rose])) :-
+    masVisitasCompanera(Planta).
+
+:- end_tests(ejercicio5).
