@@ -3,7 +3,7 @@
 :-begin_tests(ejercicio1).
 
 
-test('TipoArbustoRose') :- 
+test('PlantaTipoArbusto') :- 
     sonDeTipoArbusto(rose).
 
 test('NOEsTipoArbusto',fail) :- 
@@ -12,7 +12,7 @@ test('NOEsTipoArbusto',fail) :-
 test('TipoArbustoInversible',  set(Planta == [rose])) :- 
      sonDeTipoArbusto(Planta).
 
-test('PlanteQueFloreceEnPrimavera', nondet):-
+test('PlantaQueFloreceEnPrimavera', nondet):-
     florecenEnPrimavera(rose).
 
 test('NoFloreceEnPrimavera',fail):-
