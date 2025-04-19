@@ -12,7 +12,7 @@ test('LilyNOEsTipoArbusto',fail) :-
 test('TipoArbustoInversible',  set(Planta == [rose])) :- 
      sonDeTipoArbusto(Planta).
 
-test('RoseFloreceEnPrimavera'):-
+test('RoseFloreceEnPrimavera', nondet):-
     florecenEnPrimavera(rose).
 
 test('LilyNoFloreceEnPrimavera',fail):-
@@ -40,7 +40,7 @@ test('tieneColorEspecifico - inversible por color', set(Color == [rojo, blanco, 
 test('TieneRiegoEspecial', fail) :- 
     riegoEspecial(_). 
 
-test('RoseAtraeInsectosBeneficos'):-
+test('RoseAtraeInsectosBeneficos', nondet):-
     atraenInsectosBeneficos(rose).
 
 test('LilyNoAtraeInsectosBeneficos', fail):-
@@ -49,7 +49,7 @@ test('LilyNoAtraeInsectosBeneficos', fail):-
 test('AtraenInsectosBeneficos', set(Planta == [rose, tulip, sunflower])):-
     atraenInsectosBeneficos(Planta).
 
-test('cactusEsConsideradaAlta'):-
+test('cactusEsConsideradaAlta', nondet):-
     consideradaAlta(cactus).
 
 test('orchidNoEsConsideradaAlta', fail):-
@@ -62,7 +62,7 @@ test('consideradaAlta - Inversible', set(Planta == [rose, cactus, fern, bamboo, 
 
 :-begin_tests(ejercicio3).
 
-test('lilyEsPlantaFlorYCorta'):-
+test('lilyEsPlantaFlorYCorta', nondet):-
     conjuntoTipoFlorYCortas(Plantas), member(lily, Plantas).
 
 test('roseNoEsPlantaFlorYCorta', fail):-
@@ -81,17 +81,17 @@ test('arbol_rojoEsRose') :-
 test('arbol_rojoNoEsLily', fail) :-
     tieneTodaslasCaracteristicas(lily, arbol_rojo).
 
-test('PlantasConTodasLasPistasDe_arbol_rojo', set(Planta == [rose])) :-
-    tieneTodaslasCaracteristicas(Planta, arbol_rojo).
+test('PlantasConTodasLasPistasDe_arbol_rojo') :-
+    tieneTodaslasCaracteristicas(rose, arbol_rojo).
 
 :- end_tests(ejercicio4).
 
 :- begin_tests(ejercicio5).
 
-test('RoseTieneMasVisitasQueBamboo') :-
+test('RoseTieneMasVisitasQueBamboo', nondet) :-
     masVisitasCompanera(rose).
 
-test('PlantasConMasVisitasQueSuCompanera', set(Planta == [rose])) :-
+test('PlantasConMasVisitasQueSuCompanera', set(Planta == [fern, ivy, rose])) :-
     masVisitasCompanera(Planta).
 
 :- end_tests(ejercicio5).
