@@ -75,7 +75,7 @@ not(planta(Planta,tipo(flor))).
 3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
 */
 conjuntoTipoFlorYCortas(Plantas):-
-   
+   planta(Planta,_),
     findall(Planta,
     ((planta(Planta,tipo(flor))),planta(Planta, altura(corta))),
     Plantas).
@@ -101,12 +101,14 @@ cantidadPistas(Planta, Cantidad) :-
     length(ListaCaracteristica, Cantidad).
 
 masVisitasCompanera(Planta) :-
-    planta(Planta, _),
-    cantidadPistas(Planta, CantPlanta),
-    forall(
-        plantas_companeras(Planta, Companera),
-        (
-            cantidadPistas(Companera, CantCompanera),
-            CantPlanta > CantCompanera
-        )
-    ).
+    plantas_companeras(Planta, Companera),
+    cantidadPistas(Planta, Cant1),
+    cantidadPistas(Companera, Cant2),
+    Cant1>Cant2.
+
+    /* Integrantes 
+     Muraoka Tomas
+     Franco  Rojas 
+     Franco Manasserian 
+     jonathan Cubilla
+    */ 
