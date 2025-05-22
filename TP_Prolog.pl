@@ -1,3 +1,9 @@
+/*Jonathan Jara
+Tomas Muraoka
+Franco Rojas
+Franco Manasserian*/
+
+
 planta(rose, color(rojo)).
 planta(rose, altura(media)).
 planta(rose, epoca(floracion, primavera)).
@@ -65,11 +71,30 @@ a. Las plantas que son arbustos y florecen en verano deben tener un sistema de r
 b. Las plantas rojas o amarillas atraen más insectos benéficos. 
 c. Las plantas que no son de tipo flor son consideradas altas.
 */
-riegoEspecial(Planta):-planta(Planta,epoca(floracion,verano)), planta(Planta, tipo(arbusto)).
-atraenInsectosBeneficos(Planta):- planta(Planta,color(rojo)).
-atraenInsectosBeneficos(Planta):- planta(Planta,color(amarillo)).
+ planta(Planta, atraeInsectos(beneficiosos)):- 
+   planta(Planta,color(rojo)).
+planta(Planta, atraeInsectos(beneficiosos)):- 
+   planta(Planta,color(amarillo)).
+
+planta(Planta, riego(especial)):-
+   planta(Planta,epoca(floracion,verano)), 
+   planta(Planta, tipo(arbusto)).
+
+planta(Planta, altura(alta)):-
+   planta(Planta, tipo), 
+   tipo\=flor.
+   
 consideradaAlta(Planta):-planta(Planta,_),
 not(planta(Planta,tipo(flor))).
+
+////////////////////// otra version 
+
+planta(Planta, atraeInsectos(beneficiosos)).
+atraeInsectos(beneficiosos)):-
+   planta(Planta,color(rojo)).
+   
+atraeInsectos(beneficiosos)):-
+   planta(Planta,color(amarillo)).
 
 /*
 3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
