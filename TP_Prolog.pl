@@ -81,20 +81,20 @@ planta(Planta, riego(especial)):-
    planta(Planta, tipo(arbusto)).
 
 planta(Planta, altura(alta)):-
-   planta(Planta, tipo), 
-   tipo\=flor.
-   
-consideradaAlta(Planta):-planta(Planta,_),
-not(planta(Planta,tipo(flor))).
+   planta(Planta, tipo(Tipo), 
+   Tipo\=flor.
+ 
 
 ////////////////////// otra version 
 
+/*
 planta(Planta, atraeInsectos(beneficiosos)).
 atraeInsectos(beneficiosos)):-
    planta(Planta,color(rojo)).
    
 atraeInsectos(beneficiosos)):-
    planta(Planta,color(amarillo)).
+*/
 
 /*
 3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
