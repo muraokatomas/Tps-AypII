@@ -53,7 +53,7 @@ plantas_companeras(bamboo, rose).
 plantas_companeras(rose, bamboo).
 
 
-/* la base de conocimientos que hay que agregar , y donde esta el punto 2 estan los predicado agregados
+/* la base de conocimientos que hay que agregar , y donde esta el punto 2 estan los predicado agregados */
 planta(rose, altura(alta)).
 planta(cactus, altura(alta)).
 planta(fern, altura(alta)).
@@ -61,7 +61,7 @@ planta(ivy, altura(alta)).
 planta(rose, atraeInsectos(beneficiosos)).
 planta(tulip, atraeInsectos(beneficiosos)).
 planta(sunflower, atraeInsectos(beneficiosos)).
-*/
+
 
 /*
 
