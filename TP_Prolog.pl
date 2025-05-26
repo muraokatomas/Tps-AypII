@@ -71,7 +71,7 @@ a. Las plantas que son arbustos y florecen en verano deben tener un sistema de r
 b. Las plantas rojas o amarillas atraen más insectos benéficos. 
 c. Las plantas que no son de tipo flor son consideradas altas.
 */
- planta(Planta, atraeInsectos(beneficiosos)):- 
+planta(Planta, atraeInsectos(beneficiosos)):- 
    planta(Planta,color(rojo)).
 planta(Planta, atraeInsectos(beneficiosos)):- 
    planta(Planta,color(amarillo)).
