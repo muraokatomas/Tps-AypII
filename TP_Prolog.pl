@@ -99,11 +99,11 @@ atraeInsectos(beneficiosos)):-
 /*
 3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
 */
-conjuntoTipoFlorYCortas(Plantas):-
-   planta(Planta,_),
-    findall(Planta,
-    ((planta(Planta,tipo(flor))),planta(Planta, altura(corta))),
-    Plantas).
+conjuntoTipoFlorYCortas(Lista) :-
+    findall(P, (planta(P, tipo(flor)), planta(P, altura(corta))), Lista).
+esFlorYCorta(X) :-
+    conjuntoTipoFlorYCortas(Lista),
+    member(X, Lista).
     
 /*
 4) Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
@@ -131,9 +131,4 @@ masVisitasCompanera(Planta) :-
     cantidadPistas(Companera, Cant2),
     Cant1>Cant2.
 
-    /* Integrantes 
-     Muraoka Tomas
-     Franco  Rojas 
-     Franco Manasserian 
-     jonathan Cubilla
-    */ 
+    
