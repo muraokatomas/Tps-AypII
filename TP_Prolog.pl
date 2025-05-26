@@ -1,7 +1,8 @@
-/*Jonathan Jara
+/*Jonathan Jara Cubilla
 Tomas Muraoka
 Franco Rojas
 Franco Manasserian*/
+:- discontiguous planta/2.
 
 
 planta(rose, color(rojo)).
@@ -89,11 +90,11 @@ planta(Planta, riego(especial)):-
    planta(Planta,epoca(floracion,verano)), 
    planta(Planta, tipo(arbusto)).
 
-planta(Planta, altura(alta)):-
-   planta(Planta, tipo(Tipo), 
-   Tipo\=flor.
+planta(Planta, alturaAlta(alta)) :-
+    planta(Planta, tipo(Tipo)),
+    Tipo \= flor.
  
-
+/*
 3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
 */
 conjuntoTipoFlorYCortas(Lista) :-
