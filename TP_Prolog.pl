@@ -52,9 +52,18 @@ plantas_companeras(bamboo, rose).
 plantas_companeras(rose, bamboo).
 
 
+/* la base de conocimientos que hay que agregar , y donde esta el punto 2 estan los predicado agregados
+planta(rose, altura(alta)).
+planta(cactus, altura(alta)).
+planta(fern, altura(alta)).
+planta(ivy, altura(alta)).
+planta(rose, atraeInsectos(beneficiosos)).
+planta(tulip, atraeInsectos(beneficiosos)).
+planta(sunflower, atraeInsectos(beneficiosos)).
+*/
 
 /*
-1) Queremos poder preguntar sobre nuestras plantas si:
+
 1) Queremos poder preguntar sobre nuestras plantas si:
 a. Son de tipo arbusto.
 b. Florecen en primavera.
@@ -64,12 +73,12 @@ sonDeTipoArbusto(Planta):-planta(Planta,tipo(arbusto)).
 florecenEnPrimavera(Planta):-planta(Planta,epoca(floracion,primavera)).
 florecenEnPrimavera(Planta):-planta(Planta,epoca(floracion,primavera)).
 tieneColorEspecifico(Planta,Color):-planta(Planta,color(Color)).
-/*
-2) Sabemos que: 
+/* 
 2) Sabemos que: 
 a. Las plantas que son arbustos y florecen en verano deben tener un sistema de riego especial. 
 b. Las plantas rojas o amarillas atraen más insectos benéficos. 
 c. Las plantas que no son de tipo flor son consideradas altas.
+Realizar el predicado que nos permita agregar este conocimiento y el punto 1 no deba modificarse.
 */
 planta(Planta, atraeInsectos(beneficiosos)):- 
    planta(Planta,color(rojo)).
@@ -85,18 +94,6 @@ planta(Planta, altura(alta)):-
    Tipo\=flor.
  
 
-////////////////////// otra version 
-
-/*
-planta(Planta, atraeInsectos(beneficiosos)).
-atraeInsectos(beneficiosos)):-
-   planta(Planta,color(rojo)).
-   
-atraeInsectos(beneficiosos)):-
-   planta(Planta,color(amarillo)).
-*/
-
-/*
 3) Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
 */
 conjuntoTipoFlorYCortas(Lista) :-
