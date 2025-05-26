@@ -3,7 +3,7 @@
 :-begin_tests(ejercicio1).
 
 
-test('TipoArbustoRose') :- 
+test('TipoArbusto') :- 
     sonDeTipoArbusto(rose).
 
 test('NOEsTipoArbusto',fail) :- 
