@@ -48,7 +48,18 @@ type Academia = [Robot]
 
 -- Representa un conjunto de robots en una organización.
 -- ¿Existe en la academia algún robot llamado "Atlas" que actualmente no tenga programas en su software?
+atlasSinProgramas :: Academia -> Bool
+atlasSinProgramas academia = any (\robot -> nombre robot == "Atlas" && null (programas robot))
+
 -- ¿Todos los robots viejos (con experiencia mayor a 16) son considerados "obstinados", esto es, que tengan más programas que el triple de su nivel de experiencia?
+robotViejo :: Robot -> Bool
+robotViejo robot = xp robot > 16
+
+robotObstinado :: Robot -> Bool
+robotObstinado robot = length (programas robot) > 3 * xp robot
+
+robotsViejosObstinados :: Academia -> Bool
+robotsViejosObstinados academia = all robotObstinado (filter robotViejo academia)
 
 -- punto 4 
 -- f x [y] = y
@@ -58,12 +69,20 @@ type Academia = [Robot]
 -- Explica brevemente cuál es su propósito, define su tipo y presenta una versión que sea más expresiva en el paradigma funcional.
 -- Sin definir funciones auxiliares, construye las siguientes:
 
-mejorProgramaContra :: Robot -> Robot -> Programa
+mayorSegun :: Ord b => (a -> b) -> [a] -> a
+mayorSegun f = maximumBy (comparing f)
+
+
 --Elige el programa del segundo robot que cause mayor reducción de energía al primero.
+mejorProgramaContra :: Robot -> Robot -> Programa
+mejorProgramaContra victima atacante = 
+  maximumBy (comparing (daño victima)) (programas atacante)
 
-mejorOponente :: Robot -> Academia -> Robot
+
 -- Encuentra el robot con la mayor diferencia de poder respecto al robot recibido.
-
+mejorOponente :: Robot -> Academia -> Robot
+mejorOponente robot academia = 
+  maximumBy (comparing (diferenciaDePoder robot))
 
 
 
