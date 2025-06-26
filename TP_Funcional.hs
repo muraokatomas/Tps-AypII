@@ -92,5 +92,10 @@ mejorOponente robot academia = mayorSegun (diferenciaDePoder robot) academia
 -- punto 5
 -- Implementación sin recursividad:
 -- Implementa la función
+-- El oponente no puede derrotar si tras todos sus programas, la energía no cambia.
 noPuedeDerrotarle :: Robot -> Robot -> Bool
---La condición es que, tras aplicar todos los programas que conoce al segundo robot, la energía del primero quede igual que antes, sin necesidad de usar recursividad.
+noPuedeDerrotarle robot oponente = 
+  energia robot == energia (foldl aplicarPrograma robot (programas oponente))
+
+aplicarPrograma :: Robot -> Programa -> Robot
+aplicarPrograma robot programa = programa robot
