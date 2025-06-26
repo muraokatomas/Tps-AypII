@@ -24,12 +24,11 @@ descargaElectrica robot
 
 -- olvidarProgramas: Hace que el robot que lo recibe olvide los primeros N programas que conoce.
 olvidarProgramas::   Robot ->Int -> Robot
-olvidarProgramas robot n  = robot {programas = drop n (programas robot) }
+olvidarProgramas robot programasOlvidado  = robot {programas = drop programasOlvidado (programas robot) }
 
 -- autoAtaque: El robot objetivo se ataca a sí mismo usando su primer programa registrado. Lanzar error si no tiene ningún programa.
 autoAtaque::Programa
-autoAtaque  robot  
-
+autoAtaque robot = head (programas robot) robot
 -- punto 2 (2)
 -- Calcula la fuerza de un robot sumando su energía más el producto de su nivel de experiencia por la cantidad de programas que tiene.
 poder :: Robot -> Int
@@ -41,7 +40,7 @@ daño robot programa = energia robot - energia (programa robot)
 
 -- La diferencia absoluta en poder entre dos robots
 diferenciaDePoder :: Robot -> Robot -> Int
-diferenciaDePoder r1 r2 = abs (poder r1 - poder r2)
+diferenciaDePoder robot1 robot2 = abs (poder robot1 - poder robot2)
 
 -- punto 3
 type Academia = [Robot]
@@ -49,8 +48,7 @@ type Academia = [Robot]
 -- Representa un conjunto de robots en una organización.
 -- ¿Existe en la academia algún robot llamado "Atlas" que actualmente no tenga programas en su software?
 atlasSinProgramas :: Academia -> Bool
-atlasSinProgramas academia = any (\robot -> nombre robot == "Atlas" && null (programas robot))
-
+atlasSinProgramas academia = any (\robot -> length (programas robot) == 0 && nombre robot == "Atlas") academia
 -- ¿Todos los robots viejos (con experiencia mayor a 16) son considerados "obstinados", esto es, que tengan más programas que el triple de su nivel de experiencia?
 robotViejo :: Robot -> Bool
 robotViejo robot = xp robot > 16
@@ -69,21 +67,26 @@ robotsViejosObstinados academia = all robotObstinado (filter robotViejo academia
 -- Explica brevemente cuál es su propósito, define su tipo y presenta una versión que sea más expresiva en el paradigma funcional.
 -- Sin definir funciones auxiliares, construye las siguientes:
 
+{- Esta función sirve para encontrar el elemento mayor según una función de comparación.
+Por ejemplo, f length ["a", "abc", "ab"] devuelve "abc" porque tiene más letras.
+Podemos mejorar los nombres para mayor claridad. -}
+
 mayorSegun :: Ord b => (a -> b) -> [a] -> a
-mayorSegun f = maximumBy (comparing f)
+mayorSegun fComparacion [x] = x
+mayorSegun fComparacion (x1:x2:xs)
+  | fComparacion x1 >= fComparacion x2 = mayorSegun fComparacion (x1:xs)
+  | otherwise                          = mayorSegun fComparacion (x2:xs)
+
 
 
 --Elige el programa del segundo robot que cause mayor reducción de energía al primero.
 mejorProgramaContra :: Robot -> Robot -> Programa
-mejorProgramaContra victima atacante = 
-  maximumBy (comparing (daño victima)) (programas atacante)
+mejorProgramaContra victima atacante = mayorSegun (daño victima) (programas atacante)
 
 
 -- Encuentra el robot con la mayor diferencia de poder respecto al robot recibido.
 mejorOponente :: Robot -> Academia -> Robot
-mejorOponente robot academia = 
-  maximumBy (comparing (diferenciaDePoder robot))
-
+mejorOponente robot academia = mayorSegun (diferenciaDePoder robot) academia
 
 
 -- punto 5
